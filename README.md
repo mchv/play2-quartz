@@ -7,6 +7,7 @@ Use cron expression or a time fluent API.
 ```scala
 
 import akka.util.duration._
+import play.api.Application
 import play.api.GlobalSettings
 
 import utils.QuartzScheduler
@@ -41,11 +42,15 @@ object Global extends GlobalSettings {
 Configure a new resolver:
 
 ```scala
-resolvers += "Mariot Chauvin" at "http://mchv.me/repository"
+val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
+  resolvers += "Mariot Chauvin" at "http://mchv.me/repository"
+)
 ```
 
-Add the library dependency:
+Add the app dependency:
 
 ```scala
-libraryDependencies += "mchv" %% "play2-quartz" % "1.0"
+val appDependencies = Seq(
+  "mchv" %% "play2-quartz" % "1.0"
+)
 ```
