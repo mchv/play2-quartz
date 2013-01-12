@@ -24,7 +24,10 @@ object QuartzScheduler {
 
   def start() {scheduler.start()}
 
-  def stop() {scheduler.shutdown()}
+  def stop() {
+    scheduler.clear()
+    scheduler.standby()
+  }
 
   def schedule(name: String, g: => Unit): ScheduleHolder = {
     val wrap: JobExecutionContext => Unit = x => g

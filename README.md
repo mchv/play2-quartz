@@ -51,6 +51,6 @@ Add the app dependency:
 
 ```scala
 val appDependencies = Seq(
-  "mchv" %% "play2-quartz" % "1.0"
+  "mchv" %% "play2-quartz" % "1.1"
 )
 ```
