@@ -5,7 +5,7 @@ import PlayProject._
 object ApplicationBuild extends Build {
 
     val appName         = "play2-quartz"
-    val appVersion      = "1.1"
+    val appVersion      = "1.2"
 
     val appDependencies = Seq(
       "org.quartz-scheduler" % "quartz" % "2.1.6"
