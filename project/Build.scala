@@ -1,6 +1,6 @@
 import sbt._
 import Keys._
-import PlayProject._
+import play.Project._
 
 object ApplicationBuild extends Build {
 
@@ -11,7 +11,7 @@ object ApplicationBuild extends Build {
       "org.quartz-scheduler" % "quartz" % "2.1.6"
     )
 
-    val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
+    val main = play.Project(appName, appVersion, appDependencies).settings(
       organization := "mchv",
       publishTo := Some(Resolver.file("file", file(Option(System.getProperty("repository.path")).getOrElse("/tmp"))))
     )
