@@ -9,7 +9,7 @@ import org.quartz.impl.StdSchedulerFactory
 import org.quartz.Scheduler
 import org.quartz.Job
 import org.quartz.JobExecutionContext
-import akka.util.Duration
+import scala.concurrent.duration.Duration
 import java.lang.Class
 
 import javax.tools.ToolProvider
