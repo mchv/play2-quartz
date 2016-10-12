@@ -6,3 +6,8 @@ tmp
 .history
 dist
 .DS_Store
+/bin/
+.cache-main
+.classpath
+.project
+.settings/
