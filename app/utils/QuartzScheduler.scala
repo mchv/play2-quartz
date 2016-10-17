@@ -7,7 +7,7 @@ import org.quartz.CronScheduleBuilder
 import org.quartz.CronExpression
 import org.quartz.impl.StdSchedulerFactory
 import org.quartz.Scheduler
-import org.quartz.Job
+import org.quartz.{Job, JobKey}
 import org.quartz.JobExecutionContext
 import scala.concurrent.duration.Duration
 import java.lang.Class
@@ -35,6 +35,17 @@ object QuartzScheduler {
 
   def scheduleWithContext(name: String, f: JobExecutionContext => Unit): ScheduleHolder = {
      new ScheduleHolder(name, f, scheduler)
+  }
+
+  def removeJob(name: String): Unit = {
+    if(!scheduler.deleteJob(new JobKey(name))) {
+      throw new IllegalArgumentException(s"Job with name $name not found")
+    } else {
+      ScheduleHolder.get(name).foreach {
+        case job => ScheduleHolder.remove(name)
+      }
+    }
+
   }
 }
 
@@ -64,6 +75,7 @@ object ScheduleHolder {
 
   def add(name: String, job: JobFunc) {jobs.put(name, job)}
   def get(name: String):Option[JobFunc] = Option(jobs.get(name))
+  def remove(name: String) {jobs.remove(name)}
 
 }
 
